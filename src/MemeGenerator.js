@@ -16,7 +16,6 @@ function MemeGenerator() {
       
     }, [])
 
-
     function handleChange(e) {
       const {name, value} = e.target
       name === "topText" ? setTopText(value) : setBottomText(value)
@@ -29,6 +28,26 @@ function MemeGenerator() {
       setRandomImg(randMemeImg)
     }
 
+    function handleSave(e) {
+      console.log("saved")
+      // const value = e.target
+      const params = {
+        topText: topText,
+        bottomText: bottomText,
+        imgUrl: randomImg
+      }
+      const options = {
+        method: "POST",
+        body: JSON.stringify( params ),
+        headers: {"Content-Type": "application/json"}
+      }
+      console.log("saved")
+      fetch("http://localhost:3000/api/memes", options)
+          .then( response => response.json())
+          .then( () => {
+            console.log("saved")
+          })
+    }
 
     return (
       <div>
@@ -48,13 +67,17 @@ function MemeGenerator() {
                   onChange={handleChange}
               /> 
           
-              <button>Gen</button>
+              <button>Gen</button>  
+              
           </form>
-          <button className="meme-save">Save</button>
+        
           <div className="meme">
               <img src={randomImg} alt="" />
               <h2 className="top">{topText}</h2>
               <h2 className="bottom">{bottomText}</h2>
+          </div>
+          <div>
+              <button className="meme-save" onClick={handleSave}>Save</button>
           </div>
       </div>
   )
