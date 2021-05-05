@@ -5,6 +5,7 @@ function MemeGenerator() {
     const [bottomText, setBottomText] = useState("")
     const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg")
     const [allMemeImgs, setAllMemeImgs] = useState([])
+    const [ allMemes, setAllMemes ] = useState()
 
     useEffect(() => {
       fetch("https://api.imgflip.com/get_memes")
@@ -27,6 +28,21 @@ function MemeGenerator() {
       const randMemeImg = allMemeImgs[randNum].url
       setRandomImg(randMemeImg)
     }
+    
+    useEffect(() => {
+      console.log("index")
+      fetch("http://localhost:3000/api/memes")
+            .then(response => response.json())
+            .then(response => {
+              console.log(response)
+              const memes = response.map(meme => 
+                Object.entries(meme)
+              )
+              setAllMemes(memes)
+            })
+      
+    }, [])
+
 
     function handleSave(e) {
       console.log("saved")
@@ -78,6 +94,10 @@ function MemeGenerator() {
           </div>
           <div>
               <button className="meme-save" onClick={handleSave}>Save</button>
+          </div>
+          <div>
+            <h2 className="">Memes</h2>
+            <p>{allMemes[0][0]}</p>
           </div>
       </div>
   )
