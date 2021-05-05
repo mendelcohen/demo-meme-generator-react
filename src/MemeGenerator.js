@@ -97,11 +97,17 @@ function MemeGenerator() {
           </div>
           <div>
             <h2 className="">Memes</h2>
-            <p>{allMemes[0][0]}</p>
           </div>
+          <div>
+            {
+             allMemes.map(meme => <div className="meme"><h2 className="top">{meme[1][1]}</h2> <img src={meme[2][1]} alt=""/> <h2 className="bottom">{meme[3][1]}</h2></div>)
+            }
+          </div>
+          
       </div>
   )
 }
+// allMemes.map(meme => <div><h2>top text: {meme[1][1]}</h2> <img src={meme[2][1]}/> <h2>bottom text: {meme[3][1]}</h2></div>)
 // class MemeGenerator extends Component {
 //     constructor() {
 //         super()
