@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react"
+import Meme from "./Meme"
 
 function MemeGenerator() {
     const [topText, setTopText] = useState("")
     const [bottomText, setBottomText] = useState("")
     const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg")
     const [allMemeImgs, setAllMemeImgs] = useState([])
-    const [ allMemes, setAllMemes ] = useState()
+    const [ allMemes, setAllMemes ] = useState([])
 
     useEffect(() => {
       fetch("https://api.imgflip.com/get_memes")
@@ -35,10 +36,7 @@ function MemeGenerator() {
             .then(response => response.json())
             .then(response => {
               console.log(response)
-              const memes = response.map(meme => 
-                Object.entries(meme)
-              )
-              setAllMemes(memes)
+              setAllMemes(response)
             })
       
     }, [])
@@ -86,12 +84,12 @@ function MemeGenerator() {
               <button>Gen</button>  
               
           </form>
-        
-          <div className="meme">
-              <img src={randomImg} alt="" />
-              <h2 className="top">{topText}</h2>
-              <h2 className="bottom">{bottomText}</h2>
-          </div>
+          <Meme 
+            imgUrl={randomImg} 
+            topText={topText} 
+            bottomText={bottomText}
+          />
+    
           <div>
               <button className="meme-save" onClick={handleSave}>Save</button>
           </div>
@@ -100,14 +98,22 @@ function MemeGenerator() {
           </div>
           <div>
             {
-             allMemes.map(meme => <div className="meme"><h2 className="top">{meme[1][1]}</h2> <img src={meme[2][1]} alt=""/> <h2 className="bottom">{meme[3][1]}</h2></div>)
+             allMemes.map(meme => (
+               <div key={meme.id}>
+                <Meme 
+                  imgUrl={meme.img_url} 
+                  topText={meme.top_text} 
+                  bottomText={meme.bottom_text}
+                />
+               </div>
+             ))
             }
           </div>
           
       </div>
   )
 }
-// allMemes.map(meme => <div><h2>top text: {meme[1][1]}</h2> <img src={meme[2][1]}/> <h2>bottom text: {meme[3][1]}</h2></div>)
+
 // class MemeGenerator extends Component {
 //     constructor() {
 //         super()
