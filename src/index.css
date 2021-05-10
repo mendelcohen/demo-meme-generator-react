@@ -125,3 +125,16 @@ header > p {
   color: white;
   background: #6441a5;
 }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 40px;
+}
+
+.card {
+  border-style: dashed;
+  border-color: rgb(25, 144, 212);
+  transition: 0.3s;
+  width: 100%;
+}

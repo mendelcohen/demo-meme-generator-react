@@ -15,7 +15,6 @@ function MemeGenerator() {
                 const {memes} = response.data
                 setAllMemeImgs(memes)
             })
-      
     }, [])
 
     function handleChange(e) {
@@ -31,20 +30,16 @@ function MemeGenerator() {
     }
     
     useEffect(() => {
-      console.log("index")
       fetch("http://localhost:3000/api/memes")
             .then(response => response.json())
             .then(response => {
               console.log(response)
               setAllMemes(response)
             })
-      
     }, [])
 
 
     function handleSave(e) {
-      console.log("saved")
-      // const value = e.target
       const params = {
         topText: topText,
         bottomText: bottomText,
@@ -55,7 +50,6 @@ function MemeGenerator() {
         body: JSON.stringify( params ),
         headers: {"Content-Type": "application/json"}
       }
-      console.log("saved")
       fetch("http://localhost:3000/api/memes", options)
           .then( response => response.json())
           .then( () => {
@@ -96,10 +90,10 @@ function MemeGenerator() {
           <div>
             <h2 className="">Memes</h2>
           </div>
-          <div>
+          <div className="cards" >
             {
              allMemes.map(meme => (
-               <div key={meme.id}>
+               <div className="card" key={meme.id}>
                 <Meme 
                   imgUrl={meme.img_url} 
                   topText={meme.top_text} 
