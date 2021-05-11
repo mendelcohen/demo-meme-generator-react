@@ -52,8 +52,9 @@ function MemeGenerator() {
       }
       fetch("http://localhost:3000/api/memes", options)
           .then( response => response.json())
-          .then( () => {
-            console.log("saved")
+          .then(response => {
+            console.log(response)
+            allMemes.push(response)
           })
     }
 
