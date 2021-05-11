@@ -7,6 +7,7 @@ function MemeGenerator() {
     const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg")
     const [allMemeImgs, setAllMemeImgs] = useState([])
     const [ allMemes, setAllMemes ] = useState([])
+    // const [ votes, setVotes ] = useState([])
 
     useEffect(() => {
       fetch("https://api.imgflip.com/get_memes")
@@ -37,6 +38,10 @@ function MemeGenerator() {
               setAllMemes(response)
             })
     }, [])
+
+    // function increment() {
+    //   setVotes(prevVotes => prevVotes + 1)
+    // }
 
 
     function handleSave(e) {
@@ -99,7 +104,9 @@ function MemeGenerator() {
                   imgUrl={meme.img_url} 
                   topText={meme.top_text} 
                   bottomText={meme.bottom_text}
+                  // votes={votes.length}
                 />
+               
                </div>
              ))
             }
