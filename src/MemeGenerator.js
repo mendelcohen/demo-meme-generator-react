@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react"
-import Meme from "./Meme"
+import Meme from "./components/Meme"
+import MemeLike from "./components/MemeLike"
+
 
 function MemeGenerator() {
     const [topText, setTopText] = useState("")
@@ -7,7 +9,7 @@ function MemeGenerator() {
     const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg")
     const [allMemeImgs, setAllMemeImgs] = useState([])
     const [ allMemes, setAllMemes ] = useState([])
-    // const [ votes, setVotes ] = useState([])
+    
 
     useEffect(() => {
       fetch("https://api.imgflip.com/get_memes")
@@ -48,7 +50,8 @@ function MemeGenerator() {
       const params = {
         topText: topText,
         bottomText: bottomText,
-        imgUrl: randomImg
+        imgUrl: randomImg,
+        likes: 0
       }
       const options = {
         method: "POST",
@@ -59,9 +62,11 @@ function MemeGenerator() {
           .then( response => response.json())
           .then(response => {
             console.log(response)
-            allMemes.push(response)
+            setAllMemes([...allMemes, response])
           })
     }
+
+    
 
     return (
       <div>
@@ -100,13 +105,17 @@ function MemeGenerator() {
             {
              allMemes.map(meme => (
                <div className="card" key={meme.id}>
-                <Meme 
+                <Meme
+                  id={meme.id}
                   imgUrl={meme.img_url} 
                   topText={meme.top_text} 
                   bottomText={meme.bottom_text}
-                  // votes={votes.length}
                 />
-               
+                <MemeLike
+                  id={meme.id}
+                  likes={meme.likes}
+                  setAllMemes={setAllMemes}
+                />
                </div>
              ))
             }
