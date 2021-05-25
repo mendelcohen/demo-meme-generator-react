@@ -1,24 +1,24 @@
 import React, {useState, useEffect} from "react"
 import { FaThumbsUp } from 'react-icons/fa';
 
-function MemeLike({id, setAllMemes}) {
+function MemeLike({id, setAllMemes, handleIncrement}) {
 
-  const [ votes, setVotes ] = useState() 
+  const [ likes, setLikes ] = useState() 
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/memes/${id}`)
           .then(response => response.json())
           .then(response => {
             console.log(response)
-            setVotes(response.likes)
+            setLikes(response.likes)
           })
-  }, [])
+  }, [id])
 
     function increment() {
-      setVotes(prevVotes => prevVotes + 1)
-      console.log(votes)
+      setLikes(prevLikes => prevLikes + 1)
+      console.log(likes)
       const params = {
-        likes: votes
+        likes: likes
       }
       const options = {
         method: "PATCH",
@@ -26,17 +26,18 @@ function MemeLike({id, setAllMemes}) {
         headers: {"Content-Type": "application/json"}
       }
       fetch(`http://localhost:3000/api/memes/${id}`, options)
-          // .then( response => response.json())
-          // .then(response => {
-          //   console.log(response)
-          //   setVotes(response.likes)
-          // })
+      //     .then( response => response.json())
+      //     .then(response => {
+      //       console.log(response)   
+      //       setLikes(response.likes)
+      //     })
+        handleIncrement(id)
     }
     
         
   return (
     <div className="meme">
-      <p onClick={increment}><FaThumbsUp /><br/>{votes}</p>
+      <p onClick={increment}><FaThumbsUp /><br/></p>
     </div>
   )
 }

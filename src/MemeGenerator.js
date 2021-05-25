@@ -66,6 +66,17 @@ function MemeGenerator() {
           })
     }
 
+    function handleIncrement(id) {
+      console.log(id)
+      allMemes.forEach(meme => {
+        if (meme.id === id) {
+          meme.likes++;
+          console.log(meme.likes)
+        }
+      })
+      setAllMemes([...allMemes])
+    }
+
     
 
     return (
@@ -110,10 +121,11 @@ function MemeGenerator() {
                   imgUrl={meme.img_url} 
                   topText={meme.top_text} 
                   bottomText={meme.bottom_text}
+                  likes={meme.likes}
                 />
                 <MemeLike
                   id={meme.id}
-                  likes={meme.likes}
+                  handleIncrement={handleIncrement}
                   setAllMemes={setAllMemes}
                 />
                </div>
