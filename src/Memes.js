@@ -4,10 +4,10 @@ import MemeLike from "./components/MemeLike"
 
 
 function Memes() {
-    const [topText, setTopText] = useState("")
-    const [bottomText, setBottomText] = useState("")
+    // const [topText, setTopText] = useState("")
+    // const [bottomText, setBottomText] = useState("")
     // const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg")
-    const [allMemeImgs, setAllMemeImgs] = useState([])
+    // const [allMemeImgs, setAllMemeImgs] = useState([])
     const [ allMemes, setAllMemes ] = useState([])
     
 
