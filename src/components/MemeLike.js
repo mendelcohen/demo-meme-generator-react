@@ -9,8 +9,9 @@ function MemeLike({id, setAllMemes, handleIncrement}) {
     fetch(`http://localhost:3000/api/memes/${id}`)
           .then(response => response.json())
           .then(response => {
-            console.log(response)
+            console.log(response.likes)
             setLikes(response.likes)
+            console.log(likes)
           })
   }, [id])
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 import Meme from "./components/Meme"
-import MemeLike from "./components/MemeLike"
+// import MemeLike from "./components/MemeLike"
 
 
 function MemeGenerator() {
@@ -32,19 +32,14 @@ function MemeGenerator() {
       setRandomImg(randMemeImg)
     }
     
-    useEffect(() => {
-      fetch("http://localhost:3000/api/memes")
-            .then(response => response.json())
-            .then(response => {
-              console.log(response)
-              setAllMemes(response)
-            })
-    }, [])
-
-    // function increment() {
-    //   setVotes(prevVotes => prevVotes + 1)
-    // }
-
+    // useEffect(() => {
+    //   fetch("http://localhost:3000/api/memes")
+    //         .then(response => response.json())
+    //         .then(response => {
+    //           console.log(response)
+    //           setAllMemes(response)
+    //         })
+    // }, [])
 
     function handleSave(e) {
       const params = {
@@ -66,16 +61,15 @@ function MemeGenerator() {
           })
     }
 
-    function handleIncrement(id) {
-      console.log(id)
-      allMemes.forEach(meme => {
-        if (meme.id === id) {
-          meme.likes++;
-          console.log(meme.likes)
-        }
-      })
-      setAllMemes([...allMemes])
-    }
+    // function handleIncrement(id) {
+    //   allMemes.forEach(meme => {
+    //     if (meme.id === id) {
+    //       meme.likes++;
+    //       console.log(meme)
+    //     }
+    //   })
+    //   setAllMemes([...allMemes])
+    // }
 
     
 
@@ -109,7 +103,7 @@ function MemeGenerator() {
           <div>
               <button className="meme-save" onClick={handleSave}>Save</button>
           </div>
-          <div>
+          {/* <div>
             <h2 className="">Memes</h2>
           </div>
           <div className="cards" >
@@ -131,7 +125,7 @@ function MemeGenerator() {
                </div>
              ))
             }
-          </div>
+          </div> */}
           
       </div>
   )
