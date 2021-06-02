@@ -6,31 +6,41 @@ function SignUp() {
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  // const [ allMemes, setAllMemes ] = useState([])
+  const [passwordConfirmation, setPasswordConfirmation ] = useState("")
   
   function handleChange(e) {
     const {name, value} = e.target
-    name === "firstName" ? setFirstName(value) : setLastName(value)
+    if (name === "firstName") {
+      setFirstName(value)
+     } else if (name === "lastName") {
+       setLastName(value)
+     } else if (name === "email") {
+      setEmail(value)
+    } else if (name === "password") {
+      setPassword(value)
+    } else if (name === "passwordConfirmation") {
+      setPasswordConfirmation(value)
+    } 
   }
 
   function handleSubmit(e) {
     console.log("new user")
     // const params = {
-    //   topText: topText,
-    //   bottomText: bottomText,
-    //   imgUrl: randomImg,
-    //   likes: 0
+    //   firstName: firstName,
+    //   lastName: lastName,
+    //   email: email,
+    //   password: password
     // }
     // const options = {
     //   method: "POST",
     //   body: JSON.stringify( params ),
     //   headers: {"Content-Type": "application/json"}
     // }
-    // fetch("http://localhost:3000/api/memes", options)
+    // fetch("http://localhost:3000/api/users", options)
     //     .then( response => response.json())
     //     .then(response => {
     //       console.log(response)
-    //       setAllMemes([...allMemes, response])
+    //       
     //     })
   }
 
@@ -43,9 +53,11 @@ function SignUp() {
         height: '100vh'
       }}
     >
-      <h1>Sign Up</h1>
+      
+      
 
-      <form className="meme-form" onSubmit={handleSubmit}>
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <h1>Sign Up</h1>
         <input 
           type="text"
           name="firstName"
@@ -53,6 +65,7 @@ function SignUp() {
           value={firstName}
           onChange={handleChange}
         /> 
+        <br />
         <input 
           type="text"
           name="lastName"
@@ -60,6 +73,7 @@ function SignUp() {
           value={lastName}
           onChange={handleChange}
         /> 
+        <br />
         <input 
           type="text"
           name="email"
@@ -67,6 +81,7 @@ function SignUp() {
           value={email}
           onChange={handleChange}
         /> 
+        <br />
         <input 
           type="text"
           name="password"
@@ -74,7 +89,15 @@ function SignUp() {
           value={password}
           onChange={handleChange}
         /> 
-          
+        <br />
+         <input 
+          type="text"
+          name="passwordConfirmation"
+          placeholder="Password Confirmation"
+          value={passwordConfirmation}
+          onChange={handleChange}
+        /> 
+        <br />
         <button>Create Account</button>  
               
       </form>

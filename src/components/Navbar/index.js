@@ -24,17 +24,10 @@ const Navbar = () => {
           <NavLink to='/memes' activeStyle>
             Memes
           </NavLink>
-          {/* <NavLink to='/team' activeStyle>
-            Teams
-          </NavLink>
-          <NavLink to='/blogs' activeStyle>
-            Blogs
-          </NavLink> */}
+    
           <NavLink to='/sign-up' activeStyle>
             Sign Up
           </NavLink>
-          {/* Second Nav */}
-          {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
         <NavBtn>
           <NavBtnLink to='/signin'>Sign In</NavBtnLink>
