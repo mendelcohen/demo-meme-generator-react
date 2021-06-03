@@ -157,12 +157,12 @@ header > p {
 
 .signup-form > button {
   margin: 20px auto;
-  border: none;
   font-family: VT323, monospace;
   font-size: 25px;
   letter-spacing: 1.5px;
   color: white;
   background: #6441a5;
+  padding: 10px;
 }
 
 .signup-form > input::-webkit-input-placeholder {
@@ -170,7 +170,7 @@ header > p {
   font-family: VT323, monospace;
   font-size: 20px;
   opacity: 0.4;
-  /* text-align: cen; */
+  text-align: cen;
 }
 .signup-form > input::-moz-placeholder {
   /* Firefox 19+ */
@@ -192,16 +192,4 @@ header > p {
   font-size: 25px;
   text-align: cen;
   opacity: 0.4;
-}
-
-.signup-save {
-  float: right;
-  margin-right: 5%;
-  margin-bottom: 1%;
-  border: none;
-  font-family: VT323, monospace;
-  font-size: 25px;
-  letter-spacing: 1.5px;
-  color: white;
-  background: #6441a5;
 }

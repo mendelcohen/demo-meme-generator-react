@@ -25,23 +25,24 @@ function SignUp() {
 
   function handleSubmit(e) {
     console.log("new user")
-    // const params = {
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   email: email,
-    //   password: password
-    // }
-    // const options = {
-    //   method: "POST",
-    //   body: JSON.stringify( params ),
-    //   headers: {"Content-Type": "application/json"}
-    // }
-    // fetch("http://localhost:3000/api/users", options)
-    //     .then( response => response.json())
-    //     .then(response => {
-    //       console.log(response)
-    //       
-    //     })
+    const params = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      passwordConfirmation: passwordConfirmation
+    }
+    const options = {
+      method: "POST",
+      body: JSON.stringify( params ),
+      headers: {"Content-Type": "application/json"}
+    }
+    fetch("http://localhost:3000/api/users", options)
+        .then( response => response.json())
+        .then(response => {
+          console.log(response)
+          
+        })
   }
 
   return (
