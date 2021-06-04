@@ -25,7 +25,7 @@ function SignIn() {
       body: JSON.stringify( params ),
       headers: {"Content-Type": "application/json"}
     }
-    fetch("http://localhost:3000/api/users", options)
+    fetch("http://localhost:3000/api/sessions", options)
         .then( response => response.json())
         .then(response => {
           console.log(response)
@@ -64,7 +64,7 @@ function SignIn() {
         /> 
   
         <br />
-        <button>Create Account</button>  
+        <button>Sign In</button>  
               
       </form>
 
