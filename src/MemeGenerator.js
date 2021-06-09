@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import Meme from "./components/Meme"
 // import MemeLike from "./components/MemeLike"
+import { Link } from 'react-router-dom';
 
 
 function MemeGenerator() {
@@ -91,7 +92,7 @@ function MemeGenerator() {
                   onChange={handleChange}
               /> 
           
-              <button>Gen</button>  
+              <button>Gen</button> 
               
           </form>
           <Meme 
@@ -101,7 +102,9 @@ function MemeGenerator() {
           />
     
           <div>
-              <button className="meme-save" onClick={handleSave}>Save</button>
+              
+                 <button className="meme-save" onClick={handleSave}><Link to="./Memes">Save</Link></button> 
+          
           </div>
           {/* <div>
             <h2 className="">Memes</h2>

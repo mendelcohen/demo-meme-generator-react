@@ -8,9 +8,9 @@ import {
   NavBtnLink,
 } from './NavbarElements';
 
-function isLoggedIn() {
-  return localStorage.getItem("jwt");
-}
+// function isLoggedIn() {
+//   return localStorage.getItem("jwt");
+// }
 
 // function isLoggedOut() {
 //   return !localStorage.getItem("jwt");
@@ -45,5 +45,5 @@ const Navbar = () => {
     </>
   );
 };
-  
+
 export default Navbar;

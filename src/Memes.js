@@ -72,7 +72,7 @@ function Memes() {
         if (meme.id === meme.id) {
           meme.likes++;
           
-          // console.log(likes)
+          console.log(meme.likes)
         }
       
         const params = {
