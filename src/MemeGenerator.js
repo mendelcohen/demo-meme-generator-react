@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react"
 import Meme from "./components/Meme"
 // import MemeLike from "./components/MemeLike"
-import { Link } from 'react-router-dom';
-
+// import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function MemeGenerator() {
     const [topText, setTopText] = useState("")
@@ -10,7 +10,7 @@ function MemeGenerator() {
     const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg")
     const [allMemeImgs, setAllMemeImgs] = useState([])
     const [ allMemes, setAllMemes ] = useState([])
-    
+    const history = useHistory()
 
     useEffect(() => {
       fetch("https://api.imgflip.com/get_memes")
@@ -55,13 +55,21 @@ function MemeGenerator() {
         headers: {"Content-Type": "application/json"}
       }
       fetch("http://localhost:3000/api/memes", options)
+      
           .then( response => response.json())
           .then(response => {
+            
             console.log(response)
             setAllMemes([...allMemes, response])
+            history.push('/Memes')
           })
     }
-
+    // useEffect(() => {
+    //   console.log(allMemes)
+    //   console.log("Hello")
+    //   history.push('/Memes')
+    // }, [allMemes])
+    
     // function handleIncrement(id) {
     //   allMemes.forEach(meme => {
     //     if (meme.id === id) {
@@ -93,7 +101,7 @@ function MemeGenerator() {
               /> 
           
               <button>Gen</button> 
-              
+             
           </form>
           <Meme 
             imgUrl={randomImg} 
@@ -103,7 +111,7 @@ function MemeGenerator() {
     
           <div>
               
-                 <button className="meme-save" onClick={handleSave}><Link to="./Memes">Save</Link></button> 
+          <button className="meme-save" onClick={handleSave}>Save</button>
           
           </div>
           {/* <div>
