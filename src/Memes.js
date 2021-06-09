@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import Meme from "./components/Meme"
-import MemeLike from "./components/MemeLike"
+// import MemeLike from "./components/MemeLike"
+import { FaThumbsUp } from 'react-icons/fa';
 
 
 function Memes() {
@@ -9,7 +10,6 @@ function Memes() {
     // const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg")
     // const [allMemeImgs, setAllMemeImgs] = useState([])
     const [ allMemes, setAllMemes ] = useState([])
-    
 
     // useEffect(() => {
     //   fetch("https://api.imgflip.com/get_memes")
@@ -60,15 +60,32 @@ function Memes() {
     //         setAllMemes([...allMemes, response])
     //       })
     // }
-
-    function handleIncrement(id) {
+    
+    function increment(meme) {
+      // setLikes(prevLikes => prevLikes + 1)
+      // console.log(likes)
+      
+    //   handleIncrement(id)
+    // }
+    // function handleIncrement(id) {
       allMemes.forEach(meme => {
-        if (meme.id === id) {
+        if (meme.id === meme.id) {
           meme.likes++;
-          console.log(meme)
+          
+          // console.log(likes)
         }
+      
+        const params = {
+          likes: meme.likes
+        }
+        const options = {
+          method: "PATCH",
+          body: JSON.stringify( params ),
+          headers: {"Content-Type": "application/json"}
+        }
+        fetch(`http://localhost:3000/api/memes/${meme.id}`, options)
+        setAllMemes([...allMemes])
       })
-      setAllMemes([...allMemes])
     }
 
     
@@ -115,13 +132,16 @@ function Memes() {
                   imgUrl={meme.img_url} 
                   topText={meme.top_text} 
                   bottomText={meme.bottom_text}
-                  likes={meme.likes}
+                  // likes={meme.likes}
                 />
-                <MemeLike
+                {/* <div className="meme"> */}
+                  <p onClick={increment}><FaThumbsUp /><br/>{meme.likes}</p>
+                {/* </div> */}
+                {/* <MemeLike
                   id={meme.id}
                   handleIncrement={handleIncrement}
                   setAllMemes={setAllMemes}
-                />
+                /> */}
                </div>
              ))
             }

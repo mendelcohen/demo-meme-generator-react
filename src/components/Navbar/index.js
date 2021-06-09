@@ -7,6 +7,14 @@ import {
   NavBtn,
   NavBtnLink,
 } from './NavbarElements';
+
+function isLoggedIn() {
+  return localStorage.getItem("jwt");
+}
+
+// function isLoggedOut() {
+//   return !localStorage.getItem("jwt");
+// }
   
 const Navbar = () => {
   return (
@@ -15,6 +23,7 @@ const Navbar = () => {
         <Bars />
   
         <NavMenu>
+       
           <NavLink to='/about' activeStyle>
             About
           </NavLink>
@@ -24,7 +33,7 @@ const Navbar = () => {
           <NavLink to='/memes' activeStyle>
             Memes
           </NavLink>
-    
+       
           <NavLink to='/sign-up' activeStyle>
             Sign Up
           </NavLink>

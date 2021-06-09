@@ -12,6 +12,8 @@ import About from './pages/about';
 import SignUp from './pages/signup';
 import SignIn from './pages/signin';
 
+const token = localStorage.getItem("jwt")
+
 function App() {
     return (
         <Router>

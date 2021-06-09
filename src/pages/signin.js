@@ -1,18 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
   
 function SignIn() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [user, setUser] = useState()
   
   function handleChange(e) {
     const {name, value} = e.target
-    if (name === "email") {
-      setEmail(value)
-    } else if (name === "password") {
-      setPassword(value)
-    } 
+    name === "email" ? setEmail(value) : setPassword(value) 
   }
+
+  
 
   function handleSubmit(e) {
     console.log("new user")
@@ -26,12 +25,26 @@ function SignIn() {
       headers: {"Content-Type": "application/json"}
     }
     fetch("http://localhost:3000/api/sessions", options)
-        .then( response => response.json())
-        .then(response => {
-          console.log(response)
-          
-        })
+    console.log("signed in")
+    .then(response => response.json())
+    .then(data => {
+      localStorage.setItem("token", data.token)
+      setUser(data.user)
+      console.log("signed in")
+    });
   }
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      fetch("http://localhost:3000/api/sessions", {
+        headers: {"authenticate": localStorage.token}
+      })
+      .then(response => response.json())
+      .then(user => {
+        setUser(user)
+      })
+    }
+  }, [])
 
   return (
     <div
