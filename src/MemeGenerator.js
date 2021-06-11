@@ -9,7 +9,7 @@ function MemeGenerator() {
     const [bottomText, setBottomText] = useState("")
     const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg")
     const [allMemeImgs, setAllMemeImgs] = useState([])
-    const [ allMemes, setAllMemes ] = useState([])
+    // const [ allMemes, setAllMemes ] = useState()
     const history = useHistory()
 
     useEffect(() => {
@@ -60,7 +60,7 @@ function MemeGenerator() {
           .then(response => {
             
             console.log(response)
-            setAllMemes([...allMemes, response])
+            // setAllMemes([...allMemes, response])
             history.push('/Memes')
           })
     }
