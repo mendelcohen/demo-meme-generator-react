@@ -61,7 +61,7 @@ function Memes() {
     //       })
     // }
     
-    function increment(meme) {
+    function increment(likedMeme) {
       // setLikes(prevLikes => prevLikes + 1)
       // console.log(likes)
       
@@ -69,23 +69,25 @@ function Memes() {
     // }
     // function handleIncrement(id) {
       allMemes.forEach(meme => {
-        if (meme.id === meme.id) {
+
+        if (meme.id === likedMeme.id) {
           meme.likes++;
           
           console.log(meme.likes)
+          const params = {
+            likes: meme.likes
+          }
+          const options = {
+            method: "PATCH",
+            body: JSON.stringify( params ),
+            headers: {"Content-Type": "application/json"}
+          }
+          fetch(`http://localhost:3000/api/memes/${meme.id}`, options)
         }
-      
-        const params = {
-          likes: meme.likes
-        }
-        const options = {
-          method: "PATCH",
-          body: JSON.stringify( params ),
-          headers: {"Content-Type": "application/json"}
-        }
-        fetch(`http://localhost:3000/api/memes/${meme.id}`, options)
-        setAllMemes([...allMemes])
       })
+      setAllMemes([...allMemes])
+      
+        
     }
 
     
@@ -135,7 +137,7 @@ function Memes() {
                   // likes={meme.likes}
                 />
                 {/* <div className="meme"> */}
-                  <p onClick={increment}><FaThumbsUp /><br/>{meme.likes}</p>
+                  <p onClick={() => increment(meme)}><FaThumbsUp /><br/>{meme.likes}</p>
                 {/* </div> */}
                 {/* <MemeLike
                   id={meme.id}

@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from "react"
 import Meme from "./components/Meme"
-// import MemeLike from "./components/MemeLike"
-// import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 function MemeGenerator() {
@@ -9,7 +7,6 @@ function MemeGenerator() {
     const [bottomText, setBottomText] = useState("")
     const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg")
     const [allMemeImgs, setAllMemeImgs] = useState([])
-    // const [ allMemes, setAllMemes ] = useState()
     const history = useHistory()
 
     useEffect(() => {
@@ -32,15 +29,6 @@ function MemeGenerator() {
       const randMemeImg = allMemeImgs[randNum].url
       setRandomImg(randMemeImg)
     }
-    
-    // useEffect(() => {
-    //   fetch("http://localhost:3000/api/memes")
-    //         .then(response => response.json())
-    //         .then(response => {
-    //           console.log(response)
-    //           setAllMemes(response)
-    //         })
-    // }, [])
 
     function handleSave(e) {
       const params = {
@@ -49,38 +37,20 @@ function MemeGenerator() {
         imgUrl: randomImg,
         likes: 0
       }
+      const token = localStorage.getItem("token")
       const options = {
         method: "POST",
         body: JSON.stringify( params ),
-        headers: {"Content-Type": "application/json"}
+        headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`}
       }
       fetch("http://localhost:3000/api/memes", options)
       
           .then( response => response.json())
           .then(response => {
-            
             console.log(response)
-            // setAllMemes([...allMemes, response])
             history.push('/Memes')
           })
     }
-    // useEffect(() => {
-    //   console.log(allMemes)
-    //   console.log("Hello")
-    //   history.push('/Memes')
-    // }, [allMemes])
-    
-    // function handleIncrement(id) {
-    //   allMemes.forEach(meme => {
-    //     if (meme.id === id) {
-    //       meme.likes++;
-    //       console.log(meme)
-    //     }
-    //   })
-    //   setAllMemes([...allMemes])
-    // }
-
-    
 
     return (
       <div>
@@ -114,30 +84,6 @@ function MemeGenerator() {
           <button className="meme-save" onClick={handleSave}>Save</button>
           
           </div>
-          {/* <div>
-            <h2 className="">Memes</h2>
-          </div>
-          <div className="cards" >
-            {
-             allMemes.map(meme => (
-               <div className="card" key={meme.id}>
-                <Meme
-                  id={meme.id}
-                  imgUrl={meme.img_url} 
-                  topText={meme.top_text} 
-                  bottomText={meme.bottom_text}
-                  likes={meme.likes}
-                />
-                <MemeLike
-                  id={meme.id}
-                  handleIncrement={handleIncrement}
-                  setAllMemes={setAllMemes}
-                />
-               </div>
-             ))
-            }
-          </div> */}
-          
       </div>
   )
 }

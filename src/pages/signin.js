@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-  
+import { useHistory } from 'react-router-dom';
+
 function SignIn() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [user, setUser] = useState()
+  const history = useHistory()
   
   function handleChange(e) {
     const {name, value} = e.target
@@ -14,6 +15,7 @@ function SignIn() {
   
 
   function handleSubmit(e) {
+    e.preventDefault()
     console.log("new user")
     const params = {
       email: email,
@@ -25,26 +27,27 @@ function SignIn() {
       headers: {"Content-Type": "application/json"}
     }
     fetch("http://localhost:3000/api/sessions", options)
-    console.log("signed in")
     .then(response => response.json())
     .then(data => {
-      localStorage.setItem("token", data.token)
-      setUser(data.user)
-      console.log("signed in")
+      localStorage.setItem("token", data.jwt)
+      history.push('/MemeGenerator')
     });
+    // setUsername("")
+    // setPassword("")
   }
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      fetch("http://localhost:3000/api/sessions", {
-        headers: {"authenticate": localStorage.token}
-      })
-      .then(response => response.json())
-      .then(user => {
-        setUser(user)
-      })
-    }
-  }, [])
+  // useEffect(() => {
+  //   const token = 
+  //   if (localStorage.getItem("token")) {
+  //     fetch("http://localhost:3000/api/sessions", {
+  //       headers: {"authenticate": localStorage.token}
+  //     })
+  //     .then(response => response.json())
+  //     .then(user => {
+  //       setUser(user)
+  //     })
+  //   }
+  // }, [])
 
   return (
     <div
