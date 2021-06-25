@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 
-function SignIn() {
+function SignIn(props) {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -16,7 +16,6 @@ function SignIn() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log("new user")
     const params = {
       email: email,
       password: password
@@ -30,24 +29,11 @@ function SignIn() {
     .then(response => response.json())
     .then(data => {
       localStorage.setItem("token", data.jwt)
+      props.setLoggedIn(true)
       history.push('/MemeGenerator')
     });
-    // setUsername("")
-    // setPassword("")
   }
 
-  // useEffect(() => {
-  //   const token = 
-  //   if (localStorage.getItem("token")) {
-  //     fetch("http://localhost:3000/api/sessions", {
-  //       headers: {"authenticate": localStorage.token}
-  //     })
-  //     .then(response => response.json())
-  //     .then(user => {
-  //       setUser(user)
-  //     })
-  //   }
-  // }, [])
 
   return (
     <div

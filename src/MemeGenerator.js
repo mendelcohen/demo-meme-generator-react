@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import Meme from "./components/Meme"
 import { useHistory } from 'react-router-dom';
+// import Navbar from "./components/Navbar/index.js"
 
 function MemeGenerator() {
     const [topText, setTopText] = useState("")
@@ -54,6 +55,7 @@ function MemeGenerator() {
 
     return (
       <div>
+          {/* <Navbar/> */}
           <form className="meme-form" onSubmit={handleSubmit}>
               <input 
                   type="text"
