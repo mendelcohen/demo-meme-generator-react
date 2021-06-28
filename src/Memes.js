@@ -22,10 +22,11 @@ function Memes() {
           const params = {
             likes: meme.likes
           }
+          const token = localStorage.getItem("token")
           const options = {
             method: "PATCH",
             body: JSON.stringify( params ),
-            headers: {"Content-Type": "application/json"}
+            headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`}
           }
           fetch(`http://localhost:3000/api/memes/${meme.id}`, options)
         }
