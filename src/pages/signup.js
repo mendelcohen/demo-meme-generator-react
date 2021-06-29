@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
   
 function SignUp() {
 
@@ -7,7 +8,8 @@ function SignUp() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation ] = useState("")
-  
+  const history = useHistory()
+
   function handleChange(e) {
     const {name, value} = e.target
     if (name === "firstName") {
@@ -24,6 +26,7 @@ function SignUp() {
   }
 
   function handleSubmit(e) {
+    e.preventDefault()
     console.log("new user")
     const params = {
       firstName: firstName,
@@ -41,7 +44,7 @@ function SignUp() {
         .then( response => response.json())
         .then(response => {
           console.log(response)
-          
+          history.push('/sign-in')
         })
   }
 
