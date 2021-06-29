@@ -126,6 +126,10 @@ header > p {
   background: #6441a5;
 }
 
+.meme-save:disabled {
+  background: gray;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));

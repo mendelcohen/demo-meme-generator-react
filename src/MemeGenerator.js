@@ -3,7 +3,7 @@ import Meme from "./components/Meme"
 import { useHistory } from 'react-router-dom';
 // import Navbar from "./components/Navbar/index.js"
 
-function MemeGenerator() {
+function MemeGenerator(props) {
     const [topText, setTopText] = useState("")
     const [bottomText, setBottomText] = useState("")
     const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg")
@@ -82,8 +82,13 @@ function MemeGenerator() {
           />
     
           <div>
-              
-          <button className="meme-save" onClick={handleSave}>Save</button>
+          {props.loggedIn ? (
+            <button className="meme-save" onClick={handleSave}>Save</button>
+           ) : (
+            <button className="meme-save" disabled>Sign in to save</button>
+           )
+          } 
+          
           
           </div>
       </div>

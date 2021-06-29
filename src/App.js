@@ -10,10 +10,11 @@ import SignUp from './pages/signup';
 import SignIn from './pages/signin';
 // import Logout from './pages/logout';
 
-const isLoggedIn = localStorage.getItem("jwt")
+const isLoggedIn = localStorage.getItem("token")
 
 function App() {
     const [ loggedIn, setLoggedIn ] = useState(isLoggedIn)
+
     console.log(loggedIn)
     return (
         <Router>
@@ -28,7 +29,7 @@ function App() {
               <Route path='/sign-up' component={SignUp} />
               <Route path='/sign-in' render={props => <SignIn {...props} setLoggedIn={setLoggedIn}/>} />
               {/* <Route path='/logout' component={Logout} /> */}
-              <Route path='/MemeGenerator' component={MemeGenerator} />
+              <Route path='/MemeGenerator' render={props => <MemeGenerator {...props} loggedIn={loggedIn}/>}/>
               <Route path='/Memes' component={Memes} />
             </Switch>
         </Router>

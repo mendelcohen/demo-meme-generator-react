@@ -21,25 +21,15 @@ const Navbar = (props) => {
   return (
     <>
       <Nav>
-        <Bars />
-  
+        {/* <Bars /> */}
         <NavMenu>
-          
-          {/* <NavLink to='/about' activeStyle>
-            About 
-          </NavLink> */}
           <NavLink to='/MemeGenerator' activeStyle>
             Meme Generator
           </NavLink>
           <NavLink to='/memes' activeStyle>
             Memes
           </NavLink>
-       
-          {/* <NavLink to='/sign-up' activeStyle>
-            Sign Up
-          </NavLink> */}
         </NavMenu>
-       
         <NavBtn >
           <NavBtnLink onClick={handleLogout} to='/sign-in'>Logout</NavBtnLink>
         </NavBtn>
@@ -47,31 +37,17 @@ const Navbar = (props) => {
     </>
   );
 
-} else {
+  } else {
   return (
     <>
       <Nav>
-        <Bars />
+        {/* <Bars /> */}
   
         <NavMenu>
-{/*        
-          <NavLink to='/about' activeStyle>
-            About 
-          </NavLink>
-          <NavLink to='/MemeGenerator' activeStyle>
-            Meme Generator
-          </NavLink>
-          <NavLink to='/memes' activeStyle>
-            Memes
-          </NavLink> */}
-       
-          {/* <NavLink to='/sign-up' activeStyle>
-            Sign Up
-          </NavLink> */}
+
         </NavMenu>
         <NavBtn >
           <NavBtnLink to='/sign-in'>Sign In</NavBtnLink>
-        
           <NavBtnLink to='/sign-up'>Sign Up</NavBtnLink>
         </NavBtn>
       </Nav>
