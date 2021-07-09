@@ -38,9 +38,9 @@ function SignUp() {
     const options = {
       method: "POST",
       body: JSON.stringify( params ),
-      headers: {"Content-Type": "application/json"}
+      headers: {"Access-Control-Allow-Origin": "*", "Content-Type": "application/json"}
     }
-    fetch("http://localhost:3000/api/users", options)
+    fetch("/api/users", options)
         .then( response => response.json())
         .then(response => {
           console.log(response)
@@ -57,9 +57,7 @@ function SignUp() {
         height: '100vh'
       }}
     >
-      
-      
-
+  
       <form className="signup-form" onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
         <input 
@@ -103,12 +101,7 @@ function SignUp() {
         /> 
         <br />
         <button>Create Account</button>  
-              
       </form>
-
-
-
-      
 
     </div>
   );

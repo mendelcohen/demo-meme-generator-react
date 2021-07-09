@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from "react"
 import Meme from "./components/Meme"
 import { useHistory } from 'react-router-dom';
-// import Navbar from "./components/Navbar/index.js"
 
 function MemeGenerator(props) {
     const [topText, setTopText] = useState("")
     const [bottomText, setBottomText] = useState("")
-    const [randomImg, setRandomImg] = useState("http://i.imgflip.com/1bij.jpg")
+    const [randomImg, setRandomImg] = useState("https://i.imgflip.com/1bij.jpg")
     const [allMemeImgs, setAllMemeImgs] = useState([])
     const history = useHistory()
 
@@ -26,7 +25,19 @@ function MemeGenerator(props) {
   
     function handleSubmit(e) {
       e.preventDefault()
-      const randNum = Math.floor(Math.random() * allMemeImgs.length)
+      let randNum = Math.floor(Math.random() * allMemeImgs.length)
+      allMemeImgs.map(() => {
+        if (allMemeImgs[randNum].id === "112126428" || 
+            allMemeImgs[randNum].id === "110163934" ||
+            allMemeImgs[randNum].id === "183518946" ||
+            allMemeImgs[randNum].id === "21604248" || 
+            allMemeImgs[randNum].id === "71428573" ||
+            allMemeImgs[randNum].id === "17699"
+           ) {
+          return randNum += 1 
+        }
+        return randNum
+      })
       const randMemeImg = allMemeImgs[randNum].url
       setRandomImg(randMemeImg)
     }
@@ -42,20 +53,18 @@ function MemeGenerator(props) {
       const options = {
         method: "POST",
         body: JSON.stringify( params ),
-        headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`}
+        headers: {"Access-Control-Allow-Origin": "*", "Content-Type": "application/json", "Authorization": `Bearer ${token}`}
       }
-      fetch("http://localhost:3000/api/memes", options)
-      
+      fetch("/api/memes", options)
           .then( response => response.json())
           .then(response => {
             console.log(response)
             history.push('/Memes')
           })
     }
-
+    
     return (
       <div>
-          {/* <Navbar/> */}
           <form className="meme-form" onSubmit={handleSubmit}>
               <input 
                   type="text"
@@ -82,15 +91,28 @@ function MemeGenerator(props) {
           />
     
           <div>
-          {props.loggedIn ? (
-            <button className="meme-save" onClick={handleSave}>Save</button>
-           ) : (
-            <button className="meme-save" disabled>Sign in to save</button>
-           )
-          } 
-          
-          
+            {props.loggedIn ? (
+              <button className="meme-save" onClick={handleSave}>Save</button>
+             ) : (
+              <button className="meme-save" disabled>Sign in to save</button>
+             )
+            } 
           </div>
+          
+          {/* <div className="cards">
+            {
+              allMemeImgs.map(img => (
+                <div className="card">
+                  <h4>{img.id}</h4>
+                  {<img 
+              src={img.url} 
+              alt="Problem?"
+          />}
+                </div>
+              ))
+            }
+          </div> */}
+
       </div>
   )
 }

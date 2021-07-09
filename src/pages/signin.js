@@ -6,13 +6,13 @@ function SignIn(props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const history = useHistory()
-  
+  // console.log(props.PORT)
+  // const PORT = process.env.Port || "http://localhost:3000"
+
   function handleChange(e) {
     const {name, value} = e.target
     name === "email" ? setEmail(value) : setPassword(value) 
   }
-
-  
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -23,17 +23,18 @@ function SignIn(props) {
     const options = {
       method: "POST",
       body: JSON.stringify( params ),
-      headers: {"Content-Type": "application/json"}
+      headers: {"Access-Control-Allow-Origin": "*", "Content-Type": "application/json", "Accept": "application/json"}
     }
-    fetch("http://localhost:3000/api/sessions", options)
+    fetch("/api/sessions", options)
     .then(response => response.json())
     .then(data => {
+      // console.log(props.PORT);
+      console.log(data)
       localStorage.setItem("token", data.jwt)
       props.setLoggedIn(true)
       history.push('/MemeGenerator')
     });
   }
-
 
   return (
     <div
@@ -45,8 +46,6 @@ function SignIn(props) {
       }}
     >
       
-      
-
       <form className="signup-form" onSubmit={handleSubmit}>
         <h1>Sign In</h1>
         <input 
@@ -64,15 +63,9 @@ function SignIn(props) {
           value={password}
           onChange={handleChange}
         /> 
-  
         <br />
         <button>Sign In</button>  
-              
       </form>
-
-
-
-      
 
     </div>
   );

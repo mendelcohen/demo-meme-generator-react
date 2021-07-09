@@ -7,7 +7,11 @@ function Memes() {
     const [ allMemes, setAllMemes ] = useState([])
     
     useEffect(() => {
-      fetch("http://localhost:3000/api/memes")
+      const options = {
+        method: "GET",
+        headers: {"Access-Control-Allow-Origin": "*", "Content-Type": "application/json"}
+      }
+      fetch("/api/memes", options)
             .then(response => response.json())
             .then(response => {
               console.log(response)
@@ -26,14 +30,13 @@ function Memes() {
           const options = {
             method: "PATCH",
             body: JSON.stringify( params ),
-            headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`}
+            headers: {"Access-Control-Allow-Origin": "*", "Content-Type": "application/json", "Authorization": `Bearer ${token}`}
           }
-          fetch(`http://localhost:3000/api/memes/${meme.id}`, options)
+          fetch(`/api/memes/${meme.id}`, options)
         }
       })
       setAllMemes([...allMemes])
     }
-
     
     return (
       <div>
