@@ -143,6 +143,20 @@ header > p {
   width: 100%;
 }
 
+.like {
+  margin-bottom: 2%;
+}
+
+.like-icon {
+  margin-left: 5%;
+  font-size: 25px;
+}
+
+.card > div > span {
+  margin-left: 2%;
+  font-size: 20px;
+}
+
 /* signup page */
 
 .signup-form {

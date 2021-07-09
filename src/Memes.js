@@ -53,7 +53,10 @@ function Memes() {
                   topText={meme.top_text} 
                   bottomText={meme.bottom_text}
                 />
-                <p onClick={() => increment(meme)}><FaThumbsUp /><br/>{meme.likes}</p>
+                <div className="like" onClick={() => increment(meme)}>
+                  <FaThumbsUp className="like-icon"/><span>{meme.likes}</span>
+                </div>
+                {/* <p onClick={() => increment(meme)}><FaThumbsUp /><span>{meme.likes}</span></p> */}
               </div>
             ))
           }
