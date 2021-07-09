@@ -41,7 +41,7 @@ function Memes() {
     return (
       <div>
         <div>
-          <h2 className="">Memes</h2>
+          <h2 className="memes-title">Memes</h2>
         </div>
         <div className="cards" >
           {

@@ -130,31 +130,44 @@ header > p {
   background: gray;
 }
 
+/* memes page */
+
+.memes-title {
+  font-size: 50px;
+  text-align: center;
+}
+
 .cards {
+  margin-left: 5%;
+  margin-right: 5%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 40px;
 }
 
 .card {
-  border-style: dashed;
-  border-color: rgb(25, 144, 212);
+  padding-top: 5%;
+  border-style: solid;
+  background-color: #63d471;
+  border-color: #6441a5;
+  border-radius: 15px 50px;
   transition: 0.3s;
   width: 100%;
 }
 
 .like {
+  text-align: right;
   margin-bottom: 2%;
 }
 
 .like-icon {
-  margin-left: 5%;
-  font-size: 25px;
+  font-size: 35px;
 }
 
 .card > div > span {
-  margin-left: 2%;
-  font-size: 20px;
+  margin-left: 3%;
+  margin-right: 5%;
+  font-size: 25px;
 }
 
 /* signup page */
